@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'f)w2xjc+%q^$5o%1dq^jage8jcwvmo#vbvi6nm-vwgzaw3=7hj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['foodbuddyi.herokuapp.com','127.0.0.1']
 
@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'Foodfinal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd55kq87as7voo4',
-        'USER':'qlvwcfjspgkwbe',
-        'PASSWORD':'7bc0a87fe7715024816dfa7dda0ce31d453ff9c1fbab3f525abf69ee785a89b3',
-        'HOST':'ec2-52-72-65-76.compute-1.amazonaws.com',
+        'NAME': 'firsttest',
+        'USER':'postgres',
+        'PASSWORD':'lelouch',
+        'HOST':'localhost',
         'PORT':'5432',
     }
 }

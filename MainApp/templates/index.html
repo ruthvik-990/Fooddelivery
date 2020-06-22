@@ -90,12 +90,12 @@
     <div class="card">
       <img src="{% static 'images/homebannerimage.jpg' %}" class="img-fluid" alt="lemon">
       <div class="card-img-overlay">
-        <h1 class="font-weight-bolder">The one spot for the foodies out there...</h1>
+        <h5 class="font-weight-bolder">The one spot for the foodies out there...</h5>
         <br>
-        <h1 class="font-weight-bolder">What are you waiting for, <br>sign up and start ordering...</h1>
+        <h5 class="font-weight-bolder">What are you waiting for, <br>sign up and start ordering...</h5>
         {% if not request.user.is_authenticated %}
-        <a href="{% url 'login' %}" class="btn btn-danger m-2">LogIn</a>
-        <a href="{% url 'register' %}" class="btn btn-warning m-2">Signup</a>
+        <a href="{% url 'login' %}" class="btn btn-danger ">LogIn</a>
+        <a href="{% url 'register' %}" class="btn btn-warning ">Signup</a>
         {% endif %}
       </div>
     </div>

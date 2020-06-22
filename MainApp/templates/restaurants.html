@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <a href="{% url 'restaurants' %}" class="btn btn-success m-3">Back</a>
-<div class="container-fluid sticky-top m-3">
+<div class="container-fluid  m-3">
 <h3 class="d-inline text-white ml-2" >{{restaurant}}</h3>
 <a href="{% url 'cart' %}" class="float-right mr-5 btn  btn-info">cart</a>
 </div>
@@ -13,8 +13,9 @@
     <div class="col-md-4 col-sm-6 my-2"> 
         <div class="card" style="width:auto;">
             <!-- <img class="card-img-top" src="img_avatar1.png" alt="Card image"> -->
+            <img src="{{product.get_url}}" class="img-fluid img-thumbnail" alt="yo">
             <div class="card-body">
-              <img src="{{product.get_url}}" class="img-fluid img-thumbnail" alt="yo">
+              
               <h4 class="card-title">{{product.name}}</h4>
               <p class="card-text">Rs.{{product.price}}</p>
               <button class="btn btn-sm btn-secondary addcart" data-product={{product.id}} data-action="add">Addtocart</button>

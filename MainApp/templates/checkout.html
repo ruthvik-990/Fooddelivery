@@ -1,0 +1,106 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+<h1 class="text-white">checkout page</h1>
+<a href="{% url 'cart' %}" class="btn btn-info m-3">Back to cart</a>
+<div class="container">
+<div class="row text-center ">
+
+    <div class="col-md-5 bg-info p-2 rounded" id="address_form">
+        <form action="" id="form" method="POST">
+            {% csrf_token %}
+            <h3 class="d-inline">Address:</h3><input class="form-control" type="text" name="address" required><br>
+            <h3 class="d-inline">City:</h3><input class="form-control" type="text" name="city" required><br>
+            <h3 class="d-inline">State:</h3><input class="form-control" type="text" name="state" required><br>
+            <h3 class="d-inline">Zipcode:</h3><input class="form-control" type="text" name="zipcode" required><br>
+            <input type="submit" class="btn btn-secondary" id="form-button" value="Submit">
+        </form>
+        <br>
+        <button class="btn btn-success invisible" id="payment-info">Place Order</button>
+    </div>
+
+    <div class="col-md-7 bg-light rounded" id="final_items">
+        
+        <span>Cart Items: {{total}}</span>
+        <!-- {% for item in items %}
+        <div>
+            name:{{item.product.name}}
+            price:{{item.product.price}}
+            itemtotal:{{item.get_total}}
+            
+            <br>
+        </div>
+
+        {% endfor %} -->
+        <table class="table">
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+            <th></th>
+            {% for item in items %}
+            <tr>
+                <td></td>
+                <td>{{item.product.name}}</td>
+                <td>Rs.{{item.product.price}}</td>
+                <td>{{item.get_count}}</td>
+                <td>{{item.get_total}}</td>
+                
+
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Total amount : Rs.{{order.get_cart_total}}</h3>
+    </div>
+</div>
+<br>
+</div>
+
+<script>
+    let form=document.getElementById("form")
+    let total='{{order.get_cart_total}}'
+    form.addEventListener("submit",function(e){
+        e.preventDefault()
+        console.log('formsubmitted...')
+        document.getElementById('form-button').classList.add('invisible')
+        document.getElementById('payment-info').classList.remove('invisible')
+    })
+    document.getElementById("payment-info").addEventListener("click",()=> submitformdata())
+
+    function submitformdata(){
+        console.log('payment button clicked')
+
+        let shippingdata={
+            address:form.address.value,
+            city:form.city.value,
+            state:form.state.value,
+            zipcode:form.zipcode.value,
+            total:total
+        }
+        var url="/process_order/"
+        fetch(url,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json',
+                'X-CSRFToken':csrftoken
+            },
+            body:JSON.stringify({'shipping':shippingdata})
+        })
+        .then((response)=>{
+            return response.json();
+        })
+
+        .then((data)=>{
+            console.log('Successs',data);
+            alert('Order Placed!');
+            window.location.href="{% url 'home' %}"
+
+        })
+
+    }
+</script>
+
+{%endblock%}

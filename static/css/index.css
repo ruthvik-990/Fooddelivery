@@ -1,0 +1,28 @@
+#nav{
+    background-color:transparent;
+    border: 1px solid white;
+    
+    
+}
+
+/* #carousel{
+    background-color: rgb(216, 219, 219);
+} */
+
+#contact{
+    background-color: rgb(235, 71, 43);
+    border: 2px solid black;
+    margin: 5px;
+}
+
+#cart_table{
+    border: 4px solid black;
+}
+
+#address_form{
+    border: 3px solid black;
+}
+
+#final_items{
+    border: 3px solid black;
+}

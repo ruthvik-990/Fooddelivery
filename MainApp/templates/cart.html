@@ -1,0 +1,49 @@
+{% extends 'main.html'%}
+
+{% block content %}
+
+
+<div class="row m-2">
+    <div class="col-md-4 ">
+        <a href="{% url 'restaurants' %}" class="btn btn-secondary">Back</a><br>
+        <h4 class="text-white d-inline ">Items:{{total}}</h4>
+        <h4 class="text-white d-inline ml-3">Total:{{order.get_cart_total}}</h4>
+    </div>
+    <div class="col-md-3 p-2">
+        {% if total != 0  %}
+        <a href="{% url 'checkout' %}" class="btn btn-warning">Checkout</a>
+        {% endif %}
+    </div>
+</div>
+<br>
+<div class="container">
+    <center>
+
+        <table class="table bg-light" id="cart_table">
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+            <th></th>
+            {% for item in items %}
+            <tr>
+                <td></td>
+                <td>{{item.product.name}}</td>
+                <td>Rs.{{item.product.price}}</td>
+                <td>{{item.get_count}}</td>
+                <td>{{item.get_total}}</td>
+                <td><button class="btn btn-sm btn-success addcart" data-product={{item.product.id}} data-action="add">Add</button></td>
+                <td><button class="btn btn-sm btn-success addcart" data-product={{item.product.id}} data-action="remove">Delete</button></td>
+    
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</div>
+
+
+
+
+{%endblock%}

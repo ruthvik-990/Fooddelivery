@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="card">
+        <img src="{% static 'images/notloggedinimage.jpg' %}" alt="bear">
+        <div class="card-img-overlay text-center text-white">
+            <h1>Oops you ar not logged in.</h1>
+            <h2>Please log in to place orders.</h2>
+            <a href="{% url 'login' %}" class="btn btn-warning ">Login</a>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

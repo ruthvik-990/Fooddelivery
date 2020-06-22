@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+    <div class="container w-50 bg-white">
+        <h3>Account Details</h3>
+        <form action="" method="POST" class="m-2 p-2">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Update" class="btn btn-success btn-sm">
+        </div>  
+        </form> 
+        
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-sm btn-primary m-2">HomePage</a>
+    <div class="container mt-3">
+        <h3 class="text-white m-2 font-weight-bolder"> Order Summary:</h3>
+        {% for order in orders %}
+            <div class=" container bg-white p-2 font-weight-bolder" id="orderitem">
+                <h3>{{order}}</h3>
+
+                <span class="m-3">Total:Rs.{{order.get_cart_total}}</span><span class="m-3">Total Items:{{order.get_cart_items}}</span><span>Date ordered:{{order.date_added}}</span>
+               <br> <a href="{% url 'order_summary' order.id %}" class="btn btn-sm btn-info m-2">View</a>
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="text-white m-2">Select your pick</h1>
+<a href="{% url 'home' %}" class="btn btn-success m-3">HomePage</a>
+<br>
+<div class="container ">
+    <div class="row">
+        {% for restuarant in restuarants %}
+        <div class="col-md-4 col-sm-6 my-2"> 
+            <div class="card" style="width:auto;">
+                <img class="card-img-top" src="{{restuarant.get_url}}" class="img-fluid img-thumbnail" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">{{restuarant.name}}</h4>
+                  
+                  <a href="{% url 'individual' restuarant.id %}" class="btn btn-sm btn-primary stretched-link">View</a>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
